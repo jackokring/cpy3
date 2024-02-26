@@ -12,7 +12,7 @@ import (
 	"fmt"
 	"os"
 
-	python "github.com/sublime-security/cpy3"
+	python "github.com/jackokring/cpy3"
 )
 
 var (
