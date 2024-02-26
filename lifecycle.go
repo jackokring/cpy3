@@ -18,18 +18,18 @@ import (
 
 // The argument for Py_SetProgramName, Py_SetPath and Py_SetPythonHome should point to a zero-terminated wide character string in static storage
 // whose contents will not change for the duration of the program’s execution
-var (
+/* var (
 	programName *C.wchar_t
 	pythonPath  *C.wchar_t
 	pythonHome  *C.wchar_t
-)
+) */
 
-//Py_Initialize : https://docs.python.org/3/c-api/init.html#c.Py_Initialize
+// Py_Initialize : https://docs.python.org/3/c-api/init.html#c.Py_Initialize
 func Py_Initialize() {
 	C.Py_Initialize()
 }
 
-//Py_InitializeEx : https://docs.python.org/3/c-api/init.html#c.Py_InitializeEx
+// Py_InitializeEx : https://docs.python.org/3/c-api/init.html#c.Py_InitializeEx
 func Py_InitializeEx(initsigs bool) {
 	if initsigs {
 		C.Py_InitializeEx(1)
@@ -38,23 +38,23 @@ func Py_InitializeEx(initsigs bool) {
 	}
 }
 
-//Py_IsInitialized : https://docs.python.org/3/c-api/init.html#c.Py_IsInitialized
+// Py_IsInitialized : https://docs.python.org/3/c-api/init.html#c.Py_IsInitialized
 func Py_IsInitialized() bool {
 	return C.Py_IsInitialized() != 0
 }
 
-//Py_FinalizeEx : https://docs.python.org/3/c-api/init.html#c.Py_FinalizeEx
+// Py_FinalizeEx : https://docs.python.org/3/c-api/init.html#c.Py_FinalizeEx
 func Py_FinalizeEx() int {
 	return int(C.Py_FinalizeEx())
 }
 
-//Py_Finalize : https://docs.python.org/3/c-api/init.html#c.Py_Finalize
+// Py_Finalize : https://docs.python.org/3/c-api/init.html#c.Py_Finalize
 func Py_Finalize() {
 	C.Py_Finalize()
 }
 
-//Py_SetStandardStreamEncoding : https://docs.python.org/3/c-api/init.html#c.Py_SetStandardStreamEncoding
-func Py_SetStandardStreamEncoding(encoding, errors string) int {
+// Py_SetStandardStreamEncoding : https://docs.python.org/3/c-api/init.html#c.Py_SetStandardStreamEncoding
+/* func Py_SetStandardStreamEncoding(encoding, errors string) int {
 	cencoding := C.CString(encoding)
 	defer C.free(unsafe.Pointer(cencoding))
 
@@ -63,10 +63,10 @@ func Py_SetStandardStreamEncoding(encoding, errors string) int {
 
 	return int(C.Py_SetStandardStreamEncoding(cencoding, cerrors))
 
-}
+} */
 
-//Py_SetProgramName : https://docs.python.org/3/c-api/init.html#c.Py_SetProgramName
-func Py_SetProgramName(name string) error {
+// Py_SetProgramName : https://docs.python.org/3/c-api/init.html#c.Py_SetProgramName
+/* func Py_SetProgramName(name string) error {
 	cname := C.CString(name)
 	defer C.free(unsafe.Pointer(cname))
 
@@ -81,9 +81,9 @@ func Py_SetProgramName(name string) error {
 	programName = newProgramName
 
 	return nil
-}
+} */
 
-//Py_GetProgramName : https://docs.python.org/3/c-api/init.html#c.Py_GetProgramName
+// Py_GetProgramName : https://docs.python.org/3/c-api/init.html#c.Py_GetProgramName
 func Py_GetProgramName() (string, error) {
 	wcname := C.Py_GetProgramName()
 	if wcname == nil {
@@ -98,7 +98,7 @@ func Py_GetProgramName() (string, error) {
 	return C.GoString(cname), nil
 }
 
-//Py_GetPrefix : https://docs.python.org/3/c-api/init.html#c.Py_GetPrefix
+// Py_GetPrefix : https://docs.python.org/3/c-api/init.html#c.Py_GetPrefix
 func Py_GetPrefix() (string, error) {
 	wcname := C.Py_GetPrefix()
 	if wcname == nil {
@@ -113,7 +113,7 @@ func Py_GetPrefix() (string, error) {
 	return C.GoString(cname), nil
 }
 
-//Py_GetExecPrefix : https://docs.python.org/3/c-api/init.html#c.Py_GetExecPrefix
+// Py_GetExecPrefix : https://docs.python.org/3/c-api/init.html#c.Py_GetExecPrefix
 func Py_GetExecPrefix() (string, error) {
 	wcname := C.Py_GetExecPrefix()
 	if wcname == nil {
@@ -128,7 +128,7 @@ func Py_GetExecPrefix() (string, error) {
 	return C.GoString(cname), nil
 }
 
-//Py_GetProgramFullPath : https://docs.python.org/3/c-api/init.html#c.Py_GetProgramFullPath
+// Py_GetProgramFullPath : https://docs.python.org/3/c-api/init.html#c.Py_GetProgramFullPath
 func Py_GetProgramFullPath() (string, error) {
 	wcname := C.Py_GetProgramFullPath()
 	if wcname == nil {
@@ -143,7 +143,7 @@ func Py_GetProgramFullPath() (string, error) {
 	return C.GoString(cname), nil
 }
 
-//Py_GetPath : https://docs.python.org/3/c-api/init.html#c.Py_GetPath
+// Py_GetPath : https://docs.python.org/3/c-api/init.html#c.Py_GetPath
 func Py_GetPath() (string, error) {
 	wcname := C.Py_GetPath()
 	if wcname == nil {
@@ -158,8 +158,8 @@ func Py_GetPath() (string, error) {
 	return C.GoString(cname), nil
 }
 
-//Py_SetPath : https://docs.python.org/3/c-api/init.html#c.Py_SetPath
-func Py_SetPath(path string) error {
+// Py_SetPath : https://docs.python.org/3/c-api/init.html#c.Py_SetPath
+/* func Py_SetPath(path string) error {
 	cpath := C.CString(path)
 	defer C.free(unsafe.Pointer(cpath))
 
@@ -173,40 +173,40 @@ func Py_SetPath(path string) error {
 	pythonHome = newPath
 
 	return nil
-}
+} */
 
-//Py_GetVersion : https://docs.python.org/3/c-api/init.html#c.Py_GetVersion
+// Py_GetVersion : https://docs.python.org/3/c-api/init.html#c.Py_GetVersion
 func Py_GetVersion() string {
 	cversion := C.Py_GetVersion()
 	return C.GoString(cversion)
 }
 
-//Py_GetPlatform : https://docs.python.org/3/c-api/init.html#c.Py_GetPlatform
+// Py_GetPlatform : https://docs.python.org/3/c-api/init.html#c.Py_GetPlatform
 func Py_GetPlatform() string {
 	cplatform := C.Py_GetPlatform()
 	return C.GoString(cplatform)
 }
 
-//Py_GetCopyright : https://docs.python.org/3/c-api/init.html#c.Py_GetCopyright
+// Py_GetCopyright : https://docs.python.org/3/c-api/init.html#c.Py_GetCopyright
 func Py_GetCopyright() string {
 	ccopyright := C.Py_GetCopyright()
 	return C.GoString(ccopyright)
 }
 
-//Py_GetCompiler : https://docs.python.org/3/c-api/init.html#c.Py_GetCompiler
+// Py_GetCompiler : https://docs.python.org/3/c-api/init.html#c.Py_GetCompiler
 func Py_GetCompiler() string {
 	ccompiler := C.Py_GetCompiler()
 	return C.GoString(ccompiler)
 }
 
-//Py_GetBuildInfo : https://docs.python.org/3/c-api/init.html#c.Py_GetBuildInfo
+// Py_GetBuildInfo : https://docs.python.org/3/c-api/init.html#c.Py_GetBuildInfosetpath
 func Py_GetBuildInfo() string {
 	cbuildInfo := C.Py_GetBuildInfo()
 	return C.GoString(cbuildInfo)
 }
 
-//PySys_SetArgvEx : https://docs.python.org/3/c-api/init.html#c.PySys_SetArgvEx
-func PySys_SetArgvEx(args []string, updatepath bool) error {
+// PySys_SetArgvEx : https://docs.python.org/3/c-api/init.html#c.PySys_SetArgvEx
+/* func PySys_SetArgvEx(args []string, updatepath bool) error {
 	argc := C.int(len(args))
 	argv := make([]*C.wchar_t, argc, argc)
 	for i, arg := range args {
@@ -230,10 +230,10 @@ func PySys_SetArgvEx(args []string, updatepath bool) error {
 	}
 
 	return nil
-}
+} */
 
 //PySys_SetArgv : https://docs.python.org/3/c-api/init.html#c.PySys_SetArgv
-func PySys_SetArgv(args []string) error {
+/* func PySys_SetArgv(args []string) error {
 	argc := C.int(len(args))
 	argv := make([]*C.wchar_t, argc, argc)
 	for i, arg := range args {
@@ -252,10 +252,10 @@ func PySys_SetArgv(args []string) error {
 	C.PySys_SetArgv(argc, (**C.wchar_t)(unsafe.Pointer(&argv[0])))
 
 	return nil
-}
+} */
 
-//Py_SetPythonHome : https://docs.python.org/3/c-api/init.html#c.Py_SetPythonHome
-func Py_SetPythonHome(home string) error {
+// Py_SetPythonHome : https://docs.python.org/3/c-api/init.html#c.Py_SetPythonHome
+/* func Py_SetPythonHome(home string) error {
 	chome := C.CString(home)
 	defer C.free(unsafe.Pointer(chome))
 
@@ -269,9 +269,9 @@ func Py_SetPythonHome(home string) error {
 	pythonHome = newHome
 
 	return nil
-}
+} */
 
-//Py_GetPythonHome : https://docs.python.org/3/c-api/init.html#c.Py_GetPythonHome
+// Py_GetPythonHome : https://docs.python.org/3/c-api/init.html#c.Py_GetPythonHome
 func Py_GetPythonHome() (string, error) {
 	wchome := C.Py_GetPythonHome()
 	if wchome == nil {
