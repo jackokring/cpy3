@@ -266,6 +266,9 @@ func (pyObject *PyObject) GetIter() *PyObject {
 	return togo(C.PyObject_GetIter(toc(pyObject)))
 }
 
+// AddModuleCFunction: Just one at a time ...
+//
+// An extension to inject functions into the modules needed.
 func (pyObject *PyObject) AddModuleCFunction(name string, function unsafe.Pointer) int {
 	name_ := C.CString(name)
 	defer C.free(unsafe.Pointer(name_))
