@@ -266,7 +266,7 @@ func (pyObject *PyObject) GetIter() *PyObject {
 	return togo(C.PyObject_GetIter(toc(pyObject)))
 }
 
-func (pyObject *PyObject) addModuleCFunction(name string, function unsafe.Pointer) int {
+func (pyObject *PyObject) AddModuleCFunction(name string, function unsafe.Pointer) int {
 	name_ := C.CString(name)
 	defer C.free(unsafe.Pointer(name_))
 
