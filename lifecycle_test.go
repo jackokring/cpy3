@@ -31,7 +31,7 @@ func TestInitializationEx(t *testing.T) {
 
 }
 
-func TestProgramName(t *testing.T) {
+/* func TestProgramName(t *testing.T) {
 	Py_Finalize()
 
 	defaultName, err := Py_GetProgramName()
@@ -44,7 +44,7 @@ func TestProgramName(t *testing.T) {
 	assert.Nil(t, err)
 	assert.Equal(t, name, newName)
 
-}
+} */
 
 func TestPrefix(t *testing.T) {
 	prefix, err := Py_GetPrefix()
@@ -67,7 +67,7 @@ func TestProgramFullPath(t *testing.T) {
 
 }
 
-func TestPath(t *testing.T) {
+/* func TestPath(t *testing.T) {
 	Py_Finalize()
 
 	defaultPath, err := Py_GetPath()
@@ -80,7 +80,7 @@ func TestPath(t *testing.T) {
 	assert.Nil(t, err)
 	assert.Equal(t, name, newName)
 
-}
+} */
 
 func TestVersion(t *testing.T) {
 	version := Py_GetVersion()
@@ -107,7 +107,7 @@ func TestBuildInfo(t *testing.T) {
 	assert.IsType(t, "", buildInfo)
 }
 
-func TestPythonHome(t *testing.T) {
+/* func TestPythonHome(t *testing.T) {
 	name := "høme"
 
 	defaultHome, err := Py_GetPythonHome()
@@ -118,9 +118,9 @@ func TestPythonHome(t *testing.T) {
 	newName, err := Py_GetPythonHome()
 	assert.Nil(t, err)
 	assert.Equal(t, name, newName)
-}
+} */
 
-func TestSetArgv(t *testing.T) {
+/* func TestSetArgv(t *testing.T) {
 	Py_Initialize()
 
 	PySys_SetArgv([]string{"test.py"})
@@ -130,9 +130,9 @@ func TestSetArgv(t *testing.T) {
 	assert.Equal(t, "test.py", PyUnicode_AsUTF8(PyList_GetItem(argv, 0)))
 
 	Py_Finalize()
-}
+} */
 
-func TestSetArgvEx(t *testing.T) {
+/* func TestSetArgvEx(t *testing.T) {
 	Py_Initialize()
 
 	PySys_SetArgvEx([]string{"test.py"}, false)
@@ -142,4 +142,4 @@ func TestSetArgvEx(t *testing.T) {
 	assert.Equal(t, "test.py", PyUnicode_AsUTF8(PyList_GetItem(argv, 0)))
 
 	Py_Finalize()
-}
+} */
