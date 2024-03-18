@@ -10,6 +10,7 @@ package python3
 //go:generate go run script/variadic.go
 
 /*
+
 #include "Python.h"
 #include "macro.h"
 #include "variadic.h"

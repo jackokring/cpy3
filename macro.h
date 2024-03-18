@@ -8,6 +8,7 @@ Copyright 2018 Datadog, Inc.
 #ifndef MACRO_H
 #define MACRO_H
 
+
 #include "Python.h"
 
 int _go_Py_EnterRecursiveCall(const char *where);

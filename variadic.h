@@ -8,6 +8,7 @@ Copyright 2018 Datadog, Inc.
 #ifndef VARIADIC_H
 #define VARIADIC_H
 
+
 #include "Python.h"
 
 PyObject* _go_PyObject_CallFunctionObjArgs(PyObject *callable, int argc, PyObject **args);
